@@ -1,25 +1,85 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="de">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cocktail API</title>
-    <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Suizid in der Schweiz – Daten & Kontext</title>
+
+    <!-- CSS aus dem css-Ordner laden (gleicher Pfad wie Vorlage) -->
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <!-- ============================================ -->
+    <!-- HEADER = Kopfbereich der Seite               -->
+    <!-- ============================================ -->
     <header>
-        <h1>Vorlage für interaktive Medien II</h1>
-
+      <h1>Suizide in der Schweiz</h1>
+      <p class="untertitel">Daten des Bundesamts für Statistik · 1970–2024</p>
     </header>
+
+    <!-- ============================================ -->
+    <!-- MAIN = Hauptbereich (hier passiert alles)    -->
+    <!-- ============================================ -->
     <main>
-        <h2>Main Content</h2>
-        <p>This is the main content of the page.</p>
+      <!-- BEREICH 1: User gibt ein Jahr ein -->
+      <section id="eingabe">
+        <h2>Jahr auswählen</h2>
 
+        <!-- input = Eingabefeld, type="number" heisst nur Zahlen erlaubt -->
+        <!-- placeholder = grauer Hilfstext der verschwindet wenn man tippt -->
+        <!-- min/max = kleinste/grösste erlaubte Zahl -->
+        <input
+          type="number"
+          id="jahr-input"
+          placeholder="z.B. 2020"
+          min="1970"
+          max="2024"
+        />
+
+        <!-- button = ein klickbarer Knopf -->
+        <button id="suchen-button">Daten laden</button>
+      </section>
+
+      <!-- BEREICH 2: Hier zeigen wir die Suizid-Zahlen an -->
+      <!-- JavaScript wird später die "–" durch echte Zahlen ersetzen -->
+      <section id="ergebnis">
+        <h2>Ergebnisse</h2>
+
+        <div class="karten-container">
+          <div class="karte">
+            <h3>Gesamt</h3>
+            <p class="zahl" id="zahl-gesamt">–</p>
+          </div>
+
+          <div class="karte">
+            <h3>Männer</h3>
+            <p class="zahl" id="zahl-maenner">–</p>
+          </div>
+
+          <div class="karte">
+            <h3>Frauen</h3>
+            <p class="zahl" id="zahl-frauen">–</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- BEREICH 3: World Bank Daten (bauen wir später) -->
+      <section id="kontext">
+        <h2>Gesellschaftlicher Kontext</h2>
+        <p id="kontext-text">Wähle ein Jahr, um Vergleichsdaten zu sehen.</p>
+      </section>
     </main>
-    <footer>
-        <p>This is the footer of the page.</p>
 
+    <!-- ============================================ -->
+    <!-- FOOTER = Fusszeile                           -->
+    <!-- ============================================ -->
+    <footer>
+      <p>Quelle: BFS – Sterbefälle und Sterbeziffern · World Bank Open Data</p>
+      <p>IM2 Projekt · Frühlingssemester 2026</p>
     </footer>
+
+    <!-- JavaScript aus dem js-Ordner laden (gleicher Pfad wie Vorlage) -->
+    <!-- type="module" brauchen wir für async/await -->
     <script src="js/script.js" type="module"></script>
-</body>
+  </body>
 </html>

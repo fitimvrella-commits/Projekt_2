@@ -1,11 +1,191 @@
+/* ============================================= */
+/* GRUNDRESET: Gilt für ALLE Elemente            */
+/* (Das hattet ihr schon in der Vorlage)         */
+/* ============================================= */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+    margin: 0;              /* Kein Aussenabstand */
+    padding: 0;             /* Kein Innenabstand */
+    box-sizing: border-box; /* Ränder zählen zur Breite dazu */
 }
 
-
+/* ============================================= */
+/* BODY: Die ganze Seite                         */
+/* ============================================= */
 body {
-    background-color: pink;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    background-color: #05293e;   /* petrol-blau - symbolisch für Unterstzüzung */
+    color: #e6edf3;              /* Helle Schrift */
+    line-height: 1.2;            /* Zeilenabstand (1.6 = angenehm lesbar) */
 }
 
+/* ============================================= */
+/* HEADER                                        */
+/* ============================================= */
+header {
+    text-align: center;
+    padding: 60px 20px 40px;      /* oben rechts/links unten */
+    border-bottom: 1px solid #21262d;
+}
+
+header h1 {
+    font-size: 64px;
+    font-weight: bold;             /* Dünn/leicht */
+    letter-spacing: -0.04em;
+    margin-bottom: 10px;
+}
+
+.untertitel {
+    font-size: 0.9rem;
+    color: #cfd2d5;               /* Gedämpftes Grau */
+}
+
+/* ============================================= */
+/* MAIN                                          */
+/* ============================================= */
+main {
+    max-width: 900px;             /* Nicht breiter als 900px */
+    margin: 0 auto;               /* Zentriert */
+    padding: 40px 20px;
+}
+
+/* Jede section bekommt Abstand nach unten */
+section {
+    margin-bottom: 50px;
+}
+
+/* Alle h2 in sections */
+section h2 {
+    font-size: 1.1rem;
+    font-weight: 400;
+    color: #cfd2d5;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+/* ============================================= */
+/* EINGABE: Input-Feld + Button                  */
+/* ============================================= */
+#eingabe {
+    text-align: center;
+}
+
+#jahr-input {
+    background-color: #161b22;
+    border: 1px solid #30363d;
+    color: #e6edf3;
+    padding: 12px 20px;
+    font-size: 1.1rem;
+    border-radius: 6px;
+    width: 160px;
+    text-align: center;
+}
+
+/* :focus = wenn der User ins Feld klickt */
+#jahr-input:focus {
+    outline: none;
+    border-color: #58a6ff;        /* Blauer Rand */
+}
+
+#suchen-button {
+    background-color: #238636;    /* Grün */
+    color: #ffffff;
+    border: none;
+    padding: 12px 24px;
+    font-size: 1rem;
+    border-radius: 6px;
+    cursor: pointer;              /* Zeigt Hand-Symbol */
+    margin-left: 10px;
+}
+
+#suchen-button:hover {
+    background-color: #2ea043;    /* Heller beim Hovern */
+}
+
+#suchen-button:active {
+    background-color: #1d6e2d;    /* Original-Farbe beim Klicken */
+    transform: scale(0.95)
+}
+
+/* ============================================= */
+/* KARTEN: Die 3 Ergebnis-Boxen                  */
+/* ============================================= */
+
+/* Container: Karten nebeneinander mit Flexbox */
+.karten-container {
+    display: flex;
+    gap: 20px;                    /* Abstand zwischen Karten */
+    justify-content: center;
+}
+
+/* Einzelne Karte */
+.karte {
+    background-color: #161b22;
+    border: 1px solid #21262d;
+    border-radius: 8px;
+    padding: 30px;
+    text-align: center;
+    flex: 1;                      /* Gleichmässig verteilen */
+    max-width: 250px;
+}
+
+.karte h3 {
+    font-size: 0.85rem;
+    color: #8b949e;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 10px;
+}
+
+/* Die grosse Zahl */
+.karte .zahl {
+    font-size: 2.5rem;
+    font-weight: 300;
+}
+
+/* ============================================= */
+/* KONTEXT-BEREICH (World Bank - kommt später)   */
+/* ============================================= */
+#kontext {
+    text-align: center;
+}
+
+#kontext-text {
+    color: #8b949e;
+}
+
+/* ============================================= */
+/* FOOTER                                        */
+/* ============================================= */
+footer {
+    text-align: center;
+    padding: 30px 20px;
+    border-top: 1px solid #21262d;
+    color: #484f58;
+    font-size: 0.8rem;
+}
+
+footer p {
+    margin-bottom: 5px;
+}
+
+/* ============================================= */
+/* RESPONSIVE: Handy-Ansicht (unter 600px breit) */
+/* ============================================= */
+@media (max-width: 600px) {
+
+    .karten-container {
+        flex-direction: column;   /* Karten untereinander */
+        align-items: center;
+    }
+
+    .karte {
+        max-width: 100%;
+        width: 100%;
+    }
+
+    header h1 {
+        font-size: 1.5rem;
+    }
+}

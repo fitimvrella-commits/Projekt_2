@@ -1,36 +1,30 @@
 // ============================================
 // SCRIPT.JS — Das Gehirn unserer Webseite
 // ============================================
-// Jede Zeile die mit // anfängt ist ein Kommentar.
-// Der Browser ignoriert Kommentare komplett.
-// Sie sind nur für UNS damit wir den Code verstehen.
-
-
-// console.log() gibt Text in der Browser-Konsole aus.
-// So testen wir ob Sachen funktionieren.
-// Öffne die Konsole: Rechtsklick → Untersuchen → Tab "Console"
-console.log('Script geladen!');
 
 
 // ============================================
 // SCHRITT 1: HTML-Elemente finden
 // ============================================
-// document.querySelector() durchsucht das HTML
-// und gibt uns das Element zurück.
-// '#jahr-input' heisst: finde das Element mit id="jahr-input"
+// document.querySelector() durchsucht das HTML und gibt uns das Element zurück.
+// '#id' = sucht nach einer ID, '.klasse' = sucht nach einer Klasse
 
 const jahrInput = document.querySelector('#jahr-input');
 const suchenButton = document.querySelector('#suchen-button');
-
-// Auch die 3 Zahlen-Felder holen wir uns schon:
 const zahlGesamt = document.querySelector('#zahl-gesamt');
 const zahlMaenner = document.querySelector('#zahl-maenner');
 const zahlFrauen = document.querySelector('#zahl-frauen');
+const zahlArbeitslos = document.querySelector('#zahl-arbeitslos');
+const zahlArbeitslose = document.querySelector('#zahl-arbeitslose-absolut');
 
 
 // ============================================
-// FUNKTION: Daten von der Suizid-API laden
+// SCHRITT 2: Funktionen definieren
 // ============================================
+
+// Funktion: Suizid-Daten von der API laden
+// async function = asynchrone Funktion (wartet auf Antwort vom Server)
+// try/catch = versuche etwas, und fange Fehler ab falls es nicht klappt
 async function datenLaden() {
     const url = 'https://suizid.mezaciru.myhostpoint.ch/api/';
     try {
@@ -42,33 +36,70 @@ async function datenLaden() {
     }
 }
 
+// Funktion: Arbeitslosenquote von der World Bank API laden
+// Der Parameter "jahr" wird in die URL eingesetzt
+async function worldBankLaden(jahr) {
+    const url = 'https://api.worldbank.org/v2/country/CHE/indicator/SL.UEM.TOTL.ZS?format=json&date=' + jahr;
+    try {
+        const response = await fetch(url);
+        return await response.json();
+    } catch (error) {
+        console.error(error);
+        return false;
+    }
+}
+
+// Funktion: Erwerbsbevölkerung von der World Bank API laden
+// Damit berechnen wir die absolute Anzahl Arbeitslose
+async function erwerbsbevoelkerungLaden(jahr) {
+    const url = 'https://api.worldbank.org/v2/country/CHE/indicator/SL.TLF.TOTL.IN?format=json&date=' + jahr;
+    try {
+        const response = await fetch(url);
+        return await response.json();
+    } catch (error) {
+        console.error(error);
+        return false;
+    }
+}
+
 
 // ============================================
-// SCHRITT 2: Auf Button-Klick reagieren
+// SCHRITT 3: Events (auf Interaktion reagieren)
 // ============================================
-// addEventListener('click', ...) = "Wenn jemand klickt, dann..."
-// function() { } = der Code der beim Klick ausgeführt wird
 
+// Enter-Taste im Eingabefeld löst den Button-Klick aus
+jahrInput.addEventListener('keydown', function (event) {
+    if (event.key === 'Enter') {
+        suchenButton.click();
+    }
+});
+
+// Klick auf den "Daten laden"-Button
+// async function = weil wir darin await brauchen (für die API-Aufrufe)
 suchenButton.addEventListener('click', async function () {
 
-    // .value = was im Eingabefeld steht
+    // Wert aus dem Eingabefeld holen
     const jahr = jahrInput.value;
 
-    // Prüfen: Hat der User überhaupt was eingegeben?
+    // Prüfen ob etwas eingegeben wurde
     if (jahr === '') {
-        alert('Bitte gib ein Jahr ein (1970–2024)');
-        return;  // return = sofort aufhören
+        alert('Bitte gib ein Jahr ein (1991–2024)');
+        return;
     }
 
-    // In der Konsole ausgeben was eingegeben wurde
-    console.log('Gewähltes Jahr:', jahr);
+// Prüfen ob das Jahr im gültigen Bereich liegt
+    if (jahr < 1991 || jahr > 2024) {
+        alert('Bitte gib ein Jahr zwischen 1991 und 2024 ein.');
+        return;
+    }
 
+    // --- SUIZID-API ---
 
-// API aufrufen und Daten holen
+    // Daten von der API laden
     const daten = await datenLaden();
-    console.log('Daten von API:', daten);
-    // das richtige jahr aus den daten suchen
-    //.find() = durchsucht ein array und gibt das erste Element zurück, das die Bedingung erfüllt
+
+    // Das richtige Jahr aus den Daten suchen
+    // .find() durchsucht ein Array und gibt den ersten Treffer zurück
     const gesamt = daten.daten.gesamt.find(function (eintrag) {
         return eintrag.jahr == jahr;
     });
@@ -79,10 +110,11 @@ suchenButton.addEventListener('click', async function () {
         return eintrag.jahr == jahr;
     });
 
-    // ergebnis in der Console Prüfen
-    console.log('Gesamt:', gesamt);
-    console.log('Männer:', maenner);
-    console.log('Frauen:', frauen);
+    // Prüfen ob das Jahr in den Daten existiert
+    if (gesamt === undefined) {
+        alert('Keine Daten für das Jahr ' + jahr + ' vorhanden.');
+        return;
+    }
 
     // Zahlen in die Karten schreiben
     // .textContent ersetzt den Text eines HTML-Elements
@@ -90,4 +122,24 @@ suchenButton.addEventListener('click', async function () {
     zahlMaenner.textContent = maenner.anzahl;
     zahlFrauen.textContent = frauen.anzahl;
 
+    // --- WORLD BANK API ---
+
+    // Arbeitslosenquote laden
+    const wbDaten = await worldBankLaden(jahr);
+
+    // Wert auslesen und in die Karte schreiben
+    // wbDaten[1] = Array mit Daten, [0] = erster Eintrag, .value = der Wert
+    if (wbDaten && wbDaten[1]) {
+        const arbeitslosenquote = wbDaten[1][0].value;
+        zahlArbeitslos.textContent = arbeitslosenquote + '%';
+    }
+
+    // Absolute Anzahl Arbeitslose laden
+   const erwerbsData = await erwerbsbevoelkerungLaden(jahr);
+    if (erwerbsData && erwerbsData[1] && wbDaten && wbDaten[1]) {
+        const erwerbsbevoelkerung = erwerbsData[1][0].value;
+        const quote = wbDaten[1][0].value;
+        const anzahlArbeitslose = Math.round(erwerbsbevoelkerung * quote / 100);
+        zahlArbeitslose.textContent = anzahlArbeitslose.toLocaleString('de-CH');
+    }
 });

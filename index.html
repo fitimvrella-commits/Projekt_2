@@ -14,7 +14,7 @@
     <!-- ============================================ -->
     <header>
       <h1>Suizide in der Schweiz</h1>
-      <p class="untertitel">Daten des Bundesamts für Statistik · 1970–2024</p>
+      <p class="untertitel">Daten des Bundesamts für Statistik · 1991–2024</p>
     </header>
 
     <!-- ============================================ -->
@@ -32,7 +32,7 @@
           type="number"
           id="jahr-input"
           placeholder="z.B. 2020"
-          min="1970"
+          min="1991"
           max="2024"
         />
 
@@ -66,7 +66,16 @@
       <!-- BEREICH 3: World Bank Daten (bauen wir später) -->
       <section id="kontext">
         <h2>Gesellschaftlicher Kontext</h2>
-        <p id="kontext-text">Wähle ein Jahr, um Vergleichsdaten zu sehen.</p>
+        <div class="karten-container">
+          <div class="karte">
+            <h3>Arbeitslosenquote</h3>
+            <p class="zahl" id="zahl-arbeitslos">–</p>
+          </div>
+          <div class="karte">
+            <h3>Arbeitslose</h3>
+            <p class="zahl" id="zahl-arbeitslose-absolut">–</p>
+          </div>
+        </div>
       </section>
     </main>
 

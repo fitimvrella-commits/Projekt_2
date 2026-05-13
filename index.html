@@ -5,29 +5,48 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Suizid in der Schweiz – Daten & Kontext</title>
 
-    <!-- CSS aus dem css-Ordner laden (gleicher Pfad wie Vorlage) -->
+    <!-- CSS aus dem css-Ordner laden -->
     <link rel="stylesheet" href="css/style.css" />
+    <!-- Chart.js Bibliothek laden -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   </head>
   <body>
     <!-- ============================================ -->
-    <!-- HEADER = Kopfbereich der Seite               -->
+    <!-- NAVIGATION                                   -->
     <!-- ============================================ -->
-    <header>
-      <h1>Suizide in der Schweiz</h1>
-      <p class="untertitel">Daten des Bundesamts für Statistik · 1991–2024</p>
+    <nav>
+      <div class="nav-logo">
+        <span class="logo-punkt"></span>
+        <span>BFS Datenvisualisierung</span>
+      </div>
+      <div class="nav-links">
+        <a href="#eingabe">Übersicht</a>
+        <a href="#diagramm">Daten</a>
+        <a href="#kontext">Kontext</a>
+        <a href="#quellen">Quellen</a>
+      </div>
+      <a href="#eingabe" class="nav-cta">Datensatz öffnen</a>
+    </nav>
+
+    <!-- ============================================ -->
+    <!-- HERO = Grosser Einstiegsbereich              -->
+    <!-- ============================================ -->
+    <header class="hero">
+      <span class="hero-tag">Datenbericht · 1991–2024</span>
+      <h1>Suizide<br />in der Schweiz.</h1>
+      <p class="hero-beschreibung">
+        Eine sachliche Auseinandersetzung mit den Suizidzahlen<br />der Schweiz
+        und ihrem gesellschaftlichen Kontext.
+      </p>
+      <div class="hero-buttons">
+        <a href="#eingabe" class="btn-primary">Daten erkunden →</a>
+        <a href="#quellen" class="btn-secondary">Methodik</a>
+      </div>
     </header>
 
-    <!-- ============================================ -->
-    <!-- MAIN = Hauptbereich (hier passiert alles)    -->
-    <!-- ============================================ -->
-    <main>
-      <!-- BEREICH 1: User gibt ein Jahr ein -->
-      <section id="eingabe">
-        <h2>Jahr auswählen</h2>
-
-        <!-- input = Eingabefeld, type="number" heisst nur Zahlen erlaubt -->
-        <!-- placeholder = grauer Hilfstext der verschwindet wenn man tippt -->
-        <!-- min/max = kleinste/grösste erlaubte Zahl -->
+    <!-- BEREICH 2: Eingabe -->
+    <section id="eingabe">
+      <div class="eingabe-container">
         <input
           type="number"
           id="jahr-input"
@@ -35,60 +54,107 @@
           min="1991"
           max="2024"
         />
-
-        <!-- button = ein klickbarer Knopf -->
         <button id="suchen-button">Daten laden</button>
+      </div>
+    </section>
+
+    <!-- ============================================ -->
+    <!-- MAIN = Hauptbereich                          -->
+    <!-- ============================================ -->
+    <main>
+      <!-- BEREICH 1: Liniendiagramm (kommt zuerst, wird beim Laden angezeigt) -->
+      <section id="diagramm" class="karte-gross">
+        <div class="section-header">
+          <div>
+            <span class="section-tag">Verlauf</span>
+            <h2>Suizide nach Geschlecht</h2>
+          </div>
+          <div class="filter-pills">
+            <button class="pill active" id="filter-alle">Alle</button>
+            <button class="pill" id="filter-maenner">Männer</button>
+            <button class="pill" id="filter-frauen">Frauen</button>
+          </div>
+        </div>
+        <canvas id="suizid-chart"></canvas>
       </section>
 
-      <!-- BEREICH 2: Hier zeigen wir die Suizid-Zahlen an -->
-      <!-- JavaScript wird später die "–" durch echte Zahlen ersetzen -->
+      <!-- BEREICH 3: Stat-Karten -->
       <section id="ergebnis">
-        <h2>Ergebnisse</h2>
-
         <div class="karten-container">
           <div class="karte">
             <h3>Gesamt</h3>
             <p class="zahl" id="zahl-gesamt">–</p>
+            <span class="karte-sub" id="sub-gesamt"></span>
           </div>
-
           <div class="karte">
             <h3>Männer</h3>
-            <p class="zahl" id="zahl-maenner">–</p>
+            <p class="zahl zahl-blau" id="zahl-maenner">–</p>
+            <span class="karte-sub" id="sub-maenner"></span>
           </div>
-
           <div class="karte">
             <h3>Frauen</h3>
             <p class="zahl" id="zahl-frauen">–</p>
+            <span class="karte-sub" id="sub-frauen"></span>
+          </div>
+          <div class="karte karte-dunkel">
+            <h3>Arbeitslose</h3>
+            <p class="zahl" id="zahl-arbeitslose-absolut">–</p>
+            <span class="karte-sub" id="sub-arbeitslose"></span>
           </div>
         </div>
       </section>
 
-      <!-- BEREICH 3: World Bank Daten (bauen wir später) -->
-      <section id="kontext">
-        <h2>Gesellschaftlicher Kontext</h2>
-        <div class="karten-container">
-          <div class="karte">
+      <!-- BEREICH 4: Arbeitslosigkeit Chart -->
+      <section id="kontext" class="karte-gross">
+        <div class="section-header">
+          <div>
+            <span class="section-tag">Kontext</span>
+            <h2>Arbeitslosigkeit Schweiz</h2>
+          </div>
+          <span class="quelle-text">Quelle: World Bank Open Data</span>
+        </div>
+        <canvas id="arbeitslos-chart"></canvas>
+        <div class="kontext-karten">
+          <div class="karte karte-klein">
             <h3>Arbeitslosenquote</h3>
-            <p class="zahl" id="zahl-arbeitslos">–</p>
+            <p class="zahl zahl-blau" id="zahl-arbeitslos">–</p>
           </div>
-          <div class="karte">
-            <h3>Arbeitslose</h3>
-            <p class="zahl" id="zahl-arbeitslose-absolut">–</p>
-          </div>
+        </div>
+      </section>
+
+      <!-- BEREICH 5: Info + Hilfe -->
+      <section id="quellen" class="info-reihe">
+        <div class="karte info-karte">
+          <h3>Datenquellen</h3>
+          <p class="info-titel">
+            Bundesamt für Statistik<br />World Bank Open Data
+          </p>
+          <p class="info-text">
+            Die Suiziddaten stammen vom Schweizer Bundesamt für Statistik. Die
+            Arbeitslosenzahlen werden von der World Bank Open Data API
+            geliefert.
+          </p>
+        </div>
+        <div class="hilfe-karte">
+          <h3>Brauchst du Hilfe?</h3>
+          <p class="hilfe-titel">
+            Du bist nicht allein.<br />Die Dargebotene Hand ist<br />24/7
+            erreichbar.
+          </p>
+          <a href="tel:143" class="hilfe-button">Tel. 143 →</a>
         </div>
       </section>
     </main>
 
     <!-- ============================================ -->
-    <!-- FOOTER = Fusszeile                           -->
+    <!-- FOOTER                                       -->
     <!-- ============================================ -->
     <footer>
-      <p>Quelle: BFS – Sterbefälle und Sterbeziffern · World Bank Open Data</p>
       <p>IM2 Projekt · Frühlingssemester 2026</p>
+      <p>FHGR Chur · Multimedia Production</p>
     </footer>
 
-    <!-- JavaScript aus dem js-Ordner laden (gleicher Pfad wie Vorlage) -->
-    <!-- type="module" brauchen wir für async/await -->
+    <!-- JavaScript laden -->
     <script src="js/script.js" type="module"></script>
   </body>
 </html>

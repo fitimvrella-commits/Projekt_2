@@ -1,191 +1,542 @@
 /* ============================================= */
-/* GRUNDRESET: Gilt für ALLE Elemente            */
-/* (Das hattet ihr schon in der Vorlage)         */
+/* GRUNDRESET                                    */
 /* ============================================= */
 * {
-    margin: 0;              /* Kein Aussenabstand */
-    padding: 0;             /* Kein Innenabstand */
-    box-sizing: border-box; /* Ränder zählen zur Breite dazu */
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
-
+ 
 /* ============================================= */
-/* BODY: Die ganze Seite                         */
+/* BODY                                          */
 /* ============================================= */
 body {
     font-family: 'Helvetica Neue', Arial, sans-serif;
-    background-color: #05293e;   /* petrol-blau - symbolisch für Unterstzüzung */
-    color: #e6edf3;              /* Helle Schrift */
-    line-height: 1.2;            /* Zeilenabstand (1.6 = angenehm lesbar) */
+    background-color: #f4f4f2;
+    color: #1a1a1a;
+    line-height: 1.5;
 }
-
+ 
 /* ============================================= */
-/* HEADER                                        */
+/* NAVIGATION                                    */
 /* ============================================= */
-header {
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 24px 48px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+}
+ 
+.nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 14px;
+    font-weight: 500;
+}
+ 
+.logo-punkt {
+    width: 12px;
+    height: 12px;
+    background-color: #1d4ed8;
+    border-radius: 50%;
+    display: inline-block;
+}
+ 
+.nav-links {
+    display: flex;
+    gap: 32px;
+}
+ 
+.nav-links a {
+    font-size: 13px;
+    color: #555;
+    text-decoration: none;
+}
+ 
+.nav-links a:hover {
+    color: #1a1a1a;
+}
+ 
+.nav-cta {
+    background-color: #1d4ed8;
+    color: #ffffff;
+    padding: 10px 20px;
+    border-radius: 999px;
+    font-size: 13px;
+    text-decoration: none;
+    font-weight: 500;
+}
+ 
+.nav-cta:hover {
+    background-color: #1a3fb5;
+}
+ 
+/* ============================================= */
+/* HERO                                          */
+/* ============================================= */
+.hero {
     text-align: center;
-    padding: 60px 20px 40px;      /* oben rechts/links unten */
-    border-bottom: 1px solid #21262d;
+    padding: 80px 48px 60px;
 }
-
-header h1 {
-    font-size: 64px;
-    font-weight: bold;             /* Dünn/leicht */
+ 
+.hero-tag {
+    display: inline-block;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #777;
+    margin-bottom: 24px;
+}
+ 
+.hero h1 {
+    font-size: 80px;
+    font-weight: 500;
     letter-spacing: -0.04em;
-    margin-bottom: 10px;
+    line-height: 0.95;
+    margin-bottom: 24px;
 }
-
-.untertitel {
-    font-size: 0.9rem;
-    color: #cfd2d5;               /* Gedämpftes Grau */
+ 
+.hero-beschreibung {
+    font-size: 16px;
+    color: #555;
+    line-height: 1.6;
+    margin-bottom: 40px;
 }
-
+ 
+.hero-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+}
+ 
+.btn-primary {
+    background-color: #1a1a1a;
+    color: #ffffff;
+    padding: 14px 28px;
+    border-radius: 999px;
+    font-size: 14px;
+    text-decoration: none;
+    font-weight: 500;
+}
+ 
+.btn-primary:hover {
+    background-color: #333;
+}
+ 
+.btn-secondary {
+    background-color: transparent;
+    color: #1a1a1a;
+    padding: 14px 28px;
+    border-radius: 999px;
+    font-size: 14px;
+    text-decoration: none;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+}
+ 
+.btn-secondary:hover {
+    background-color: rgba(0, 0, 0, 0.04);
+}
+ 
 /* ============================================= */
 /* MAIN                                          */
 /* ============================================= */
 main {
-    max-width: 900px;             /* Nicht breiter als 900px */
-    margin: 0 auto;               /* Zentriert */
-    padding: 40px 20px;
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 0 32px 60px;
 }
-
-/* Jede section bekommt Abstand nach unten */
-section {
-    margin-bottom: 50px;
-}
-
-/* Alle h2 in sections */
-section h2 {
-    font-size: 1.1rem;
-    font-weight: 400;
-    color: #cfd2d5;
-    margin-bottom: 20px;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-}
-
+ 
 /* ============================================= */
-/* EINGABE: Input-Feld + Button                  */
+/* GROSSE WEISSE KARTEN (Chart-Bereiche)         */
+/* ============================================= */
+.karte-gross {
+    background-color: #ffffff;
+    border-radius: 28px;
+    padding: 48px;
+    margin-bottom: 16px;
+}
+ 
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 32px;
+}
+ 
+.section-tag {
+    display: block;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #999;
+    margin-bottom: 8px;
+}
+ 
+.section-header h2 {
+    font-size: 28px;
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    color: #1a1a1a;
+    text-transform: none;
+}
+ 
+.quelle-text {
+    font-size: 12px;
+    color: #999;
+}
+ 
+/* ============================================= */
+/* FILTER PILLS                                  */
+/* ============================================= */
+.filter-pills {
+    display: flex;
+    gap: 8px;
+}
+ 
+.pill {
+    padding: 8px 18px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 500;
+    border: none;
+    cursor: pointer;
+    background-color: #f4f4f2;
+    color: #555;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+}
+ 
+.pill.active {
+    background-color: #1d4ed8;
+    color: #ffffff;
+}
+ 
+.pill:hover {
+    background-color: #e8e8e6;
+}
+ 
+.pill.active:hover {
+    background-color: #1a3fb5;
+}
+ 
+/* ============================================= */
+/* EINGABE                                       */
 /* ============================================= */
 #eingabe {
-    text-align: center;
+    margin-bottom: 16px;
 }
-
+ 
+.eingabe-container {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+}
+ 
 #jahr-input {
-    background-color: #161b22;
-    border: 1px solid #30363d;
-    color: #e6edf3;
-    padding: 12px 20px;
-    font-size: 1.1rem;
-    border-radius: 6px;
-    width: 160px;
+    background-color: #ffffff;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    color: #1a1a1a;
+    padding: 14px 24px;
+    font-size: 16px;
+    border-radius: 999px;
+    width: 200px;
     text-align: center;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
 }
-
-/* :focus = wenn der User ins Feld klickt */
+ 
+#jahr-input::placeholder {
+    color: #aaa;
+}
+ 
 #jahr-input:focus {
     outline: none;
-    border-color: #58a6ff;        /* Blauer Rand */
+    border-color: #1d4ed8;
 }
-
+ 
 #suchen-button {
-    background-color: #238636;    /* Grün */
+    background-color: #1a1a1a;
     color: #ffffff;
     border: none;
-    padding: 12px 24px;
-    font-size: 1rem;
-    border-radius: 6px;
-    cursor: pointer;              /* Zeigt Hand-Symbol */
-    margin-left: 10px;
+    padding: 14px 28px;
+    font-size: 14px;
+    border-radius: 999px;
+    cursor: pointer;
+    font-weight: 500;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
 }
-
+ 
 #suchen-button:hover {
-    background-color: #2ea043;    /* Heller beim Hovern */
+    background-color: #333;
 }
-
+ 
 #suchen-button:active {
-    background-color: #1d6e2d;    /* Original-Farbe beim Klicken */
-    transform: scale(0.95)
+    background-color: #000;
+    transform: scale(0.97);
 }
-
+ 
 /* ============================================= */
-/* KARTEN: Die 3 Ergebnis-Boxen                  */
+/* STAT-KARTEN                                   */
 /* ============================================= */
-
-/* Container: Karten nebeneinander mit Flexbox */
 .karten-container {
-    display: flex;
-    gap: 20px;                    /* Abstand zwischen Karten */
-    justify-content: center;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-bottom: 16px;
 }
-
-/* Einzelne Karte */
+ 
 .karte {
-    background-color: #161b22;
-    border: 1px solid #21262d;
-    border-radius: 8px;
-    padding: 30px;
-    text-align: center;
-    flex: 1;                      /* Gleichmässig verteilen */
-    max-width: 250px;
+    background-color: #ffffff;
+    border-radius: 24px;
+    padding: 28px 32px;
+    text-align: left;
 }
-
+ 
 .karte h3 {
-    font-size: 0.85rem;
-    color: #8b949e;
+    font-size: 11px;
+    color: #999;
     font-weight: 400;
     text-transform: uppercase;
-    letter-spacing: 0.08em;
-    margin-bottom: 10px;
+    letter-spacing: 0.2em;
+    margin-bottom: 16px;
 }
-
-/* Die grosse Zahl */
+ 
 .karte .zahl {
-    font-size: 2.5rem;
-    font-weight: 300;
+    font-size: 48px;
+    font-weight: 500;
+    letter-spacing: -0.03em;
+    line-height: 1;
 }
-
+ 
+.zahl-blau {
+    color: #1d4ed8;
+}
+ 
+.karte-sub {
+    display: block;
+    font-size: 12px;
+    color: #999;
+    margin-top: 12px;
+}
+ 
+/* Dunkle Karte (Arbeitslose) */
+.karte-dunkel {
+    background-color: #1a1a1a;
+}
+ 
+.karte-dunkel h3 {
+    color: #888;
+}
+ 
+.karte-dunkel .zahl {
+    color: #ffffff;
+}
+ 
+.karte-dunkel .karte-sub {
+    color: #888;
+}
+ 
+/* Kleine Karte im Kontext-Bereich */
+.karte-klein {
+    max-width: 300px;
+    margin-top: 24px;
+}
+ 
+/* Kontext-Karten */
+.kontext-karten {
+    display: flex;
+    gap: 16px;
+}
+ 
 /* ============================================= */
-/* KONTEXT-BEREICH (World Bank - kommt später)   */
+/* INFO + HILFE REIHE                            */
 /* ============================================= */
-#kontext {
-    text-align: center;
+.info-reihe {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 16px;
 }
-
-#kontext-text {
-    color: #8b949e;
+ 
+.info-karte {
+    background-color: #ffffff;
+    border-radius: 24px;
+    padding: 36px;
 }
-
+ 
+.info-karte h3 {
+    font-size: 11px;
+    color: #999;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    margin-bottom: 16px;
+}
+ 
+.info-titel {
+    font-size: 20px;
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    line-height: 1.4;
+    margin-bottom: 20px;
+}
+ 
+.info-text {
+    font-size: 13px;
+    color: #666;
+    line-height: 1.7;
+}
+ 
+.hilfe-karte {
+    background-color: #1d4ed8;
+    color: #ffffff;
+    border-radius: 24px;
+    padding: 36px;
+}
+ 
+.hilfe-karte h3 {
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.6);
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    margin-bottom: 16px;
+}
+ 
+.hilfe-titel {
+    font-size: 20px;
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    line-height: 1.4;
+    margin-bottom: 24px;
+}
+ 
+.hilfe-button {
+    display: inline-block;
+    background-color: #ffffff;
+    color: #1d4ed8;
+    padding: 12px 24px;
+    border-radius: 999px;
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
+}
+ 
+.hilfe-button:hover {
+    background-color: #f0f0f0;
+}
+ 
 /* ============================================= */
 /* FOOTER                                        */
 /* ============================================= */
 footer {
     text-align: center;
-    padding: 30px 20px;
-    border-top: 1px solid #21262d;
-    color: #484f58;
-    font-size: 0.8rem;
+    padding: 60px 48px 40px;
+    color: #999;
+    font-size: 12px;
 }
-
+ 
 footer p {
-    margin-bottom: 5px;
+    margin-bottom: 4px;
 }
-
+ 
 /* ============================================= */
-/* RESPONSIVE: Handy-Ansicht (unter 600px breit) */
+/* LADEANIMATION: Spinner                        */
 /* ============================================= */
-@media (max-width: 600px) {
-
+.spinner {
+    width: 30px;
+    height: 30px;
+    border: 3px solid #e8e8e6;
+    border-top: 3px solid #1d4ed8;
+    border-radius: 50%;
+    animation: drehen 0.8s linear infinite;
+    margin: 10px auto;
+}
+ 
+@keyframes drehen {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+ 
+/* ============================================= */
+/* RESPONSIVE: Handy (unter 768px)               */
+/* ============================================= */
+@media (max-width: 768px) {
+ 
+    nav {
+        padding: 16px 20px;
+    }
+ 
+    .nav-links {
+        display: none;
+    }
+ 
+    .hero h1 {
+        font-size: 44px;
+    }
+ 
+    .hero {
+        padding: 48px 20px 40px;
+    }
+ 
+    .hero-beschreibung br {
+        display: none;
+    }
+ 
+    main {
+        padding: 0 16px 40px;
+    }
+ 
+    .karte-gross {
+        padding: 28px 20px;
+        border-radius: 20px;
+    }
+ 
+    .section-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+    }
+ 
+    .section-header h2 {
+        font-size: 22px;
+    }
+ 
     .karten-container {
-        flex-direction: column;   /* Karten untereinander */
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+    }
+ 
+    .karte {
+        border-radius: 16px;
+        padding: 20px;
+    }
+ 
+    .karte .zahl {
+        font-size: 32px;
+    }
+ 
+    .info-reihe {
+        grid-template-columns: 1fr;
+    }
+ 
+    .eingabe-container {
+        flex-direction: column;
         align-items: center;
     }
-
-    .karte {
-        max-width: 100%;
+ 
+    #jahr-input {
         width: 100%;
+        max-width: 280px;
     }
-
-    header h1 {
-        font-size: 1.5rem;
+}
+ 
+@media (max-width: 480px) {
+    .karten-container {
+        grid-template-columns: 1fr;
+    }
+ 
+    .hero h1 {
+        font-size: 36px;
     }
 }

@@ -1,25 +1,28 @@
-/* ============================================= */
-/* GRUNDRESET                                    */
-/* ============================================= */
+/* GRUNDLAGEN */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
- 
-/* ============================================= */
-/* BODY                                          */
-/* ============================================= */
+
 body {
     font-family: 'Helvetica Neue', Arial, sans-serif;
     background-color: #f4f4f2;
     color: #1a1a1a;
     line-height: 1.5;
 }
- 
-/* ============================================= */
-/* NAVIGATION                                    */
-/* ============================================= */
+
+a {
+    text-decoration: none;
+}
+
+button,
+input {
+    font-family: inherit;
+}
+
+
+/* NAVIGATION */
 nav {
     display: flex;
     justify-content: space-between;
@@ -27,69 +30,69 @@ nav {
     padding: 24px 48px;
     border-bottom: 1px solid rgba(0, 0, 0, 0.06);
 }
- 
-.nav-logo {
+
+.nav-logo,
+.nav-links {
     display: flex;
     align-items: center;
+}
+
+.nav-logo {
     gap: 10px;
     font-size: 14px;
     font-weight: 500;
 }
- 
+
+.nav-links {
+    gap: 32px;
+}
+
+.nav-links a {
+    font-size: 13px;
+    color: #555;
+}
+
+.nav-links a:hover {
+    color: #1a1a1a;
+}
+
 .logo-punkt {
     width: 12px;
     height: 12px;
     background-color: #1d4ed8;
     border-radius: 50%;
-    display: inline-block;
 }
- 
-.nav-links {
-    display: flex;
-    gap: 32px;
-}
- 
-.nav-links a {
-    font-size: 13px;
-    color: #555;
-    text-decoration: none;
-}
- 
-.nav-links a:hover {
-    color: #1a1a1a;
-}
- 
+
 .nav-cta {
     background-color: #1d4ed8;
     color: #ffffff;
     padding: 10px 20px;
     border-radius: 999px;
     font-size: 13px;
-    text-decoration: none;
     font-weight: 500;
 }
- 
-.nav-cta:hover {
-    background-color: #1a3fb5;
-}
- 
-/* ============================================= */
-/* HERO                                          */
-/* ============================================= */
+
+
+/* HERO */
 .hero {
     text-align: center;
     padding: 80px 48px 60px;
 }
- 
-.hero-tag {
+
+.tag {
     display: inline-block;
     font-size: 11px;
     letter-spacing: 0.2em;
     text-transform: uppercase;
+    color: #999;
+    margin-bottom: 8px;
+}
+
+.hero .tag {
     color: #777;
     margin-bottom: 24px;
 }
- 
+
 .hero h1 {
     font-size: 80px;
     font-weight: 500;
@@ -97,320 +100,345 @@ nav {
     line-height: 0.95;
     margin-bottom: 24px;
 }
- 
-.hero-beschreibung {
+
+.hero p,
+.eingabe-bereich p {
     font-size: 16px;
     color: #555;
     line-height: 1.6;
+}
+
+.hero p {
     margin-bottom: 40px;
 }
- 
-.hero-buttons {
+
+.hero-buttons,
+.eingabe-container,
+.filter-pills {
     display: flex;
     justify-content: center;
     gap: 12px;
 }
- 
-.btn-primary {
-    background-color: #1a1a1a;
-    color: #ffffff;
+
+.btn {
     padding: 14px 28px;
     border-radius: 999px;
     font-size: 14px;
-    text-decoration: none;
     font-weight: 500;
 }
- 
-.btn-primary:hover {
+
+.btn-dark,
+#suchen-button {
+    background-color: #1a1a1a;
+    color: #ffffff;
+}
+
+.btn-dark:hover,
+#suchen-button:hover {
     background-color: #333;
 }
- 
-.btn-secondary {
-    background-color: transparent;
+
+.btn-light {
     color: #1a1a1a;
-    padding: 14px 28px;
-    border-radius: 999px;
-    font-size: 14px;
-    text-decoration: none;
     border: 1px solid rgba(0, 0, 0, 0.15);
 }
- 
-.btn-secondary:hover {
-    background-color: rgba(0, 0, 0, 0.04);
+
+
+/* EINGABE UND SLIDER */
+.eingabe-bereich {
+    max-width: 900px;
+    margin: 0 auto 16px;
+    padding: 36px;
+    background-color: #ffffff;
+    border-radius: 28px;
+    text-align: center;
 }
- 
-/* ============================================= */
-/* MAIN                                          */
-/* ============================================= */
+
+.eingabe-bereich h2,
+.section-header h2 {
+    font-size: 28px;
+    font-weight: 500;
+    letter-spacing: -0.02em;
+}
+
+.eingabe-bereich p {
+    max-width: 560px;
+    margin: 8px auto 24px;
+    font-size: 14px;
+    color: #666;
+}
+
+.slider-bereich {
+    max-width: 620px;
+    margin: 0 auto 28px;
+}
+
+.slider-header {
+    display: flex;
+    justify-content: space-between;
+    font-size: 13px;
+    color: #777;
+    margin-bottom: 14px;
+}
+
+#zeitraum-label {
+    color: #1a1a1a;
+    font-weight: 500;
+}
+
+.range-wrapper {
+    position: relative;
+    height: 32px;
+}
+
+.range-track {
+    position: absolute;
+    top: 14px;
+    left: 0;
+    right: 0;
+    height: 4px;
+    border-radius: 999px;
+    background-color: #e8e8e6;
+}
+
+input[type="range"] {
+    position: absolute;
+    top: 6px;
+    left: 0;
+    width: 100%;
+    appearance: none;
+    background: none;
+    pointer-events: none;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+    appearance: none;
+    width: 22px;
+    height: 22px;
+    background-color: #ffffff;
+    border: 3px solid #1d4ed8;
+    border-radius: 50%;
+    cursor: pointer;
+    pointer-events: auto;
+}
+
+input[type="range"]::-moz-range-thumb {
+    width: 18px;
+    height: 18px;
+    background-color: #ffffff;
+    border: 3px solid #1d4ed8;
+    border-radius: 50%;
+    cursor: pointer;
+    pointer-events: auto;
+}
+
+#jahr-input,
+#suchen-button,
+.pill {
+    border-radius: 999px;
+    border: none;
+}
+
+#jahr-input {
+    width: 200px;
+    padding: 14px 24px;
+    background-color: #f4f4f2;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    text-align: center;
+    font-size: 16px;
+}
+
+#jahr-input:focus {
+    outline: none;
+    border-color: #1d4ed8;
+    background-color: #ffffff;
+}
+
+#suchen-button {
+    padding: 14px 28px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.status-text {
+    min-height: 18px;
+    margin-top: 16px;
+    font-size: 12px;
+    color: #999;
+}
+
+.status-text.fehler {
+    color: #dc2626;
+}
+
+.status-text.erfolg {
+    color: #1d4ed8;
+}
+
+
+/* LAYOUT UND KARTEN */
 main {
     max-width: 1440px;
     margin: 0 auto;
     padding: 0 32px 60px;
 }
- 
-/* ============================================= */
-/* GROSSE WEISSE KARTEN (Chart-Bereiche)         */
-/* ============================================= */
-.karte-gross {
+
+.karte-gross,
+.karte,
+.info-karte {
     background-color: #ffffff;
+}
+
+.karte-gross {
     border-radius: 28px;
     padding: 48px;
     margin-bottom: 16px;
 }
- 
+
 .section-header {
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
     margin-bottom: 32px;
 }
- 
-.section-tag {
-    display: block;
-    font-size: 11px;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: #999;
-    margin-bottom: 8px;
-}
- 
-.section-header h2 {
-    font-size: 28px;
-    font-weight: 500;
-    letter-spacing: -0.02em;
-    color: #1a1a1a;
-    text-transform: none;
-}
- 
-.quelle-text {
+
+.quelle,
+.methodik-text,
+.info-text,
+.karte span {
     font-size: 12px;
     color: #999;
 }
- 
-/* ============================================= */
-/* FILTER PILLS                                  */
-/* ============================================= */
-.filter-pills {
-    display: flex;
-    gap: 8px;
+
+.methodik-text {
+    max-width: 760px;
+    margin-top: 24px;
+    font-size: 13px;
+    line-height: 1.7;
+    color: #666;
 }
- 
-.pill {
-    padding: 8px 18px;
-    border-radius: 999px;
-    font-size: 12px;
-    font-weight: 500;
-    border: none;
-    cursor: pointer;
-    background-color: #f4f4f2;
-    color: #555;
-    font-family: 'Helvetica Neue', Arial, sans-serif;
-}
- 
-.pill.active {
-    background-color: #1d4ed8;
-    color: #ffffff;
-}
- 
-.pill:hover {
-    background-color: #e8e8e6;
-}
- 
-.pill.active:hover {
-    background-color: #1a3fb5;
-}
- 
-/* ============================================= */
-/* EINGABE                                       */
-/* ============================================= */
-#eingabe {
-    margin-bottom: 16px;
-}
- 
-.eingabe-container {
-    display: flex;
-    justify-content: center;
-    gap: 12px;
-}
- 
-#jahr-input {
-    background-color: #ffffff;
-    border: 1px solid rgba(0, 0, 0, 0.1);
-    color: #1a1a1a;
-    padding: 14px 24px;
-    font-size: 16px;
-    border-radius: 999px;
-    width: 200px;
-    text-align: center;
-    font-family: 'Helvetica Neue', Arial, sans-serif;
-}
- 
-#jahr-input::placeholder {
-    color: #aaa;
-}
- 
-#jahr-input:focus {
-    outline: none;
-    border-color: #1d4ed8;
-}
- 
-#suchen-button {
-    background-color: #1a1a1a;
-    color: #ffffff;
-    border: none;
-    padding: 14px 28px;
-    font-size: 14px;
-    border-radius: 999px;
-    cursor: pointer;
-    font-weight: 500;
-    font-family: 'Helvetica Neue', Arial, sans-serif;
-}
- 
-#suchen-button:hover {
-    background-color: #333;
-}
- 
-#suchen-button:active {
-    background-color: #000;
-    transform: scale(0.97);
-}
- 
-/* ============================================= */
-/* STAT-KARTEN                                   */
-/* ============================================= */
-.karten-container {
+
+.karten-container,
+.info-reihe {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
     gap: 16px;
     margin-bottom: 16px;
 }
- 
+
+.karten-container {
+    grid-template-columns: repeat(4, 1fr);
+}
+
+.info-reihe {
+    grid-template-columns: 1fr 1fr;
+}
+
 .karte {
-    background-color: #ffffff;
     border-radius: 24px;
     padding: 28px 32px;
-    text-align: left;
 }
- 
-.karte h3 {
+
+.karte h3,
+.info-karte h3,
+.hilfe-karte h3 {
     font-size: 11px;
-    color: #999;
     font-weight: 400;
     text-transform: uppercase;
     letter-spacing: 0.2em;
+    color: #999;
     margin-bottom: 16px;
 }
- 
-.karte .zahl {
+
+.zahl {
     font-size: 48px;
     font-weight: 500;
     letter-spacing: -0.03em;
     line-height: 1;
 }
- 
-.zahl-blau {
+
+.blau {
     color: #1d4ed8;
 }
- 
-.karte-sub {
+
+.karte span {
     display: block;
-    font-size: 12px;
-    color: #999;
     margin-top: 12px;
 }
- 
-/* Dunkle Karte (Arbeitslose) */
+
 .karte-dunkel {
     background-color: #1a1a1a;
 }
- 
-.karte-dunkel h3 {
-    color: #888;
-}
- 
+
 .karte-dunkel .zahl {
     color: #ffffff;
 }
- 
-.karte-dunkel .karte-sub {
+
+.karte-dunkel h3,
+.karte-dunkel span {
     color: #888;
 }
- 
-/* Kleine Karte im Kontext-Bereich */
+
 .karte-klein {
     max-width: 300px;
     margin-top: 24px;
 }
- 
-/* Kontext-Karten */
-.kontext-karten {
-    display: flex;
-    gap: 16px;
+
+
+/* FILTER */
+.pill {
+    padding: 8px 18px;
+    font-size: 12px;
+    font-weight: 500;
+    background-color: #f4f4f2;
+    color: #555;
+    cursor: pointer;
 }
- 
-/* ============================================= */
-/* INFO + HILFE REIHE                            */
-/* ============================================= */
-.info-reihe {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 16px;
-    margin-bottom: 16px;
+
+.pill:hover {
+    background-color: #e8e8e6;
 }
- 
+
+.pill.active {
+    background-color: #1d4ed8;
+    color: #ffffff;
+}
+
+
+/* INFO UND HILFE */
 .info-karte {
-    background-color: #ffffff;
     border-radius: 24px;
     padding: 36px;
 }
- 
-.info-karte h3 {
-    font-size: 11px;
-    color: #999;
-    font-weight: 400;
-    text-transform: uppercase;
-    letter-spacing: 0.2em;
-    margin-bottom: 16px;
-}
- 
-.info-titel {
+
+.info-titel,
+.hilfe-titel {
     font-size: 20px;
     font-weight: 500;
     letter-spacing: -0.02em;
     line-height: 1.4;
     margin-bottom: 20px;
 }
- 
+
 .info-text {
     font-size: 13px;
-    color: #666;
     line-height: 1.7;
+    color: #666;
 }
- 
+
 .hilfe-karte {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     background-color: #1d4ed8;
     color: #ffffff;
     border-radius: 24px;
     padding: 36px;
 }
- 
+
 .hilfe-karte h3 {
-    font-size: 11px;
     color: rgba(255, 255, 255, 0.6);
-    font-weight: 400;
-    text-transform: uppercase;
-    letter-spacing: 0.2em;
-    margin-bottom: 16px;
 }
- 
-.hilfe-titel {
-    font-size: 20px;
-    font-weight: 500;
-    letter-spacing: -0.02em;
-    line-height: 1.4;
-    margin-bottom: 24px;
-}
- 
+
 .hilfe-button {
     display: inline-block;
     background-color: #ffffff;
@@ -419,124 +447,137 @@ main {
     border-radius: 999px;
     font-size: 14px;
     font-weight: 500;
-    text-decoration: none;
 }
- 
-.hilfe-button:hover {
-    background-color: #f0f0f0;
+
+.hilfe-karte lottie-player {
+    width: 200px;
+    height: 200px;
+    flex-shrink: 0;
+    margin-left: 32px;
 }
- 
-/* ============================================= */
-/* FOOTER                                        */
-/* ============================================= */
+
+
+/* ANIMATION UND FOOTER */
+.spinner {
+    width: 30px;
+    height: 30px;
+    margin: 10px auto;
+    border: 3px solid #e8e8e6;
+    border-top: 3px solid #1d4ed8;
+    border-radius: 50%;
+    animation: drehen 0.8s linear infinite;
+}
+
+@keyframes drehen {
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
 footer {
     text-align: center;
     padding: 60px 48px 40px;
     color: #999;
     font-size: 12px;
 }
- 
-footer p {
-    margin-bottom: 4px;
-}
- 
-/* ============================================= */
-/* LADEANIMATION: Spinner                        */
-/* ============================================= */
-.spinner {
-    width: 30px;
-    height: 30px;
-    border: 3px solid #e8e8e6;
-    border-top: 3px solid #1d4ed8;
-    border-radius: 50%;
-    animation: drehen 0.8s linear infinite;
-    margin: 10px auto;
-}
- 
-@keyframes drehen {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}
- 
-/* ============================================= */
-/* RESPONSIVE: Handy (unter 768px)               */
-/* ============================================= */
+
+
+/* RESPONSIVE */
 @media (max-width: 768px) {
- 
     nav {
         padding: 16px 20px;
     }
- 
-    .nav-links {
+
+    .nav-links,
+    .nav-cta {
         display: none;
     }
- 
-    .hero h1 {
-        font-size: 44px;
-    }
- 
+
     .hero {
         padding: 48px 20px 40px;
     }
- 
-    .hero-beschreibung br {
+
+    .hero h1 {
+        font-size: 44px;
+    }
+
+    .hero br {
         display: none;
     }
- 
+
+    .hero-buttons,
+    .eingabe-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .eingabe-bereich {
+        margin: 0 16px 16px;
+        padding: 28px 20px;
+        border-radius: 20px;
+    }
+
+    #jahr-input,
+    #suchen-button {
+        width: 100%;
+        max-width: 280px;
+    }
+
     main {
         padding: 0 16px 40px;
     }
- 
+
     .karte-gross {
         padding: 28px 20px;
         border-radius: 20px;
     }
- 
+
     .section-header {
         flex-direction: column;
         align-items: flex-start;
         gap: 16px;
     }
- 
-    .section-header h2 {
+
+    .section-header h2,
+    .eingabe-bereich h2 {
         font-size: 22px;
     }
- 
+
     .karten-container {
         grid-template-columns: 1fr 1fr;
-        gap: 12px;
     }
- 
-    .karte {
-        border-radius: 16px;
-        padding: 20px;
-    }
- 
-    .karte .zahl {
-        font-size: 32px;
-    }
- 
+
     .info-reihe {
         grid-template-columns: 1fr;
     }
- 
-    .eingabe-container {
-        flex-direction: column;
-        align-items: center;
+
+    .zahl {
+        font-size: 32px;
     }
- 
-    #jahr-input {
-        width: 100%;
-        max-width: 280px;
+
+    .hilfe-karte {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .hilfe-karte lottie-player {
+        width: 160px;
+        height: 160px;
+        margin-left: 0;
+        margin-top: 24px;
     }
 }
- 
+
 @media (max-width: 480px) {
+    .hero h1 {
+        font-size: 36px;
+    }
+
     .karten-container {
         grid-template-columns: 1fr;
     }
- 
-    .hero h1 {
+
+    .zahl {
         font-size: 36px;
     }
 }
